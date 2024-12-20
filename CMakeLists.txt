@@ -1,5 +1,6 @@
 cmake_minimum_required (VERSION 2.6)
 project(rovio)
+set(CMAKE_BUILD_TYPE "Release")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -march=native")
 set(ROVIO_NMAXFEATURE 25 CACHE STRING "Number of features for ROVIO")
 set(ROVIO_NCAM 1 CACHE STRING "Number of enabled cameras")
@@ -23,6 +24,8 @@ endif()
 find_package(Eigen3 REQUIRED)
 include_directories(${EIGEN3_INCLUDE_DIR})
 
+# set(OpenCV_DIR "/usr/lib/x86_64-linux-gnu/cmake/opencv4")
+# set(OpenCV_DIR "/usr/local/lib/cmake/opencv4")
 find_package(OpenCV REQUIRED COMPONENTS core highgui imgproc features2d)
 
 if(MAKE_SCENE)
