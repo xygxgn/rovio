@@ -669,6 +669,26 @@ class RovioNode{
         MXD& cov = mpFilter_->safe_.cov_;
         imuOutputCT_.transformState(state,imuOutput_);
 
+
+        static std::string traj_output_path = "/home/lilabws001/exam_ws/rovio/src/rovio/output/result.txt";
+        static bool tmp_flag = false;
+        if (tmp_flag == false)
+        {
+          std::ofstream traj_fout(traj_output_path, std::ios::out);
+          traj_fout << "#timestamp(s) tx ty tz qx qy qz qw" << std::endl;
+          traj_fout.close();
+          tmp_flag = true;
+        }
+        else
+        {
+          static std::ofstream traj_fout(traj_output_path, std::ios::app);
+          traj_fout.setf(std::ios::fixed, std::ios::floatfield);
+          traj_fout << std::setprecision(6) << ros::Time(mpFilter_->safe_.t_).toSec() << " " << std::setprecision(8) 
+              << imuOutput_.WrWB()(0) << " " << imuOutput_.WrWB()(1) << " " << imuOutput_.WrWB()(2) << " "
+              << imuOutput_.qBW().x() << " " << imuOutput_.qBW().y() << " " << imuOutput_.qBW().z() << " " << imuOutput_.qBW().w() << std::endl;
+        }
+
+
         // Cout verbose for pose measurements
         if(mpImgUpdate_->verbose_){
           if(mpPoseUpdate_->inertialPoseIndex_ >=0){
