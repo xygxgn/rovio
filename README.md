@@ -18,14 +18,14 @@
   - Modify `set(OpenCV_DIR "/usr/lib/x86_64-linux-gnu/cmake/opencv4")`
   - *do NOT forget source the ros workspace*
   - `source /opt/ros/noetic/setup.bash`
-  - `cd ~/catkin_ws/src`
+  - `cd ~/catkin_ws/`
   - `catkin_make`
 - **build with OpenCV installed by yourself *(install in `/usr/local`)***
   - `gedit CMakeLists.txt`
   - Modify `set(OpenCV_DIR "/usr/local/lib/cmake/opencv4")`
   - *do NOT forget source your own cv_bridge workspace*
   - `source ~/cv_bridge/devel/setup.bash`
-  - `cd ~/catkin_ws/src`
+  - `cd ~/catkin_ws/`
   - `catkin_make`
 
 - **Notes**
